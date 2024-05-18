@@ -1,0 +1,23 @@
+{
+  "name": "study-refactoring2",
+  "version": "1.0.0",
+  "description": "refactoring study",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeungrokYoon/study-refactoring2.git"
+  },
+  "keywords": [
+    "refactoring"
+  ],
+  "author": "Seungrok Yoon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SeungrokYoon/study-refactoring2/issues"
+  },
+  "homepage": "https://github.com/SeungrokYoon/study-refactoring2#readme"
+}
