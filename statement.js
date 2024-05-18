@@ -1,7 +1,12 @@
+const getResultTitleStr = (customer) => `청구 내역 (고객명 : ${customer})\n`;
+const getTotalAmountStr = (totalAmount) =>
+  `총액: ${format(totalAmount / 100)}\n`;
+const getVolumeCreditsStr = (credits) => `적립 포인트: ${credits}점\n`;
+
 export default function statement(invoice, plays) {
   let totalAmount = 0;
   let volumeCredits = 0;
-  let result = `청구 내역 (고객명 : ${invoice.customer})\n`;
+  let result = getResultTitleStr(invoice.customer);
   const format = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -38,7 +43,7 @@ export default function statement(invoice, plays) {
     result += `${play.name}: ${format(thisAmount / 10)} ${perf.audience}석\n`;
     totalAmount += thisAmount;
   }
-  result += `총액: ${format(totalAmount / 100)}\n`;
-  result += `적립 포인트: ${volumeCredits}점\n`;
+  result += getTotalAmountStr(totalAmount);
+  result += getVolumeCreditsStr(volumeCredits);
   return result;
 }
