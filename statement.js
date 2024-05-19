@@ -1,13 +1,13 @@
-const formatCurrency = new Intl.NumberFormat("en-US", {
+const toUSD = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
   minimumFractionDigits: 2,
 }).format;
 const getResultTitleStr = (customer) => `청구 내역 (고객명 : ${customer})\n`;
 const getAmountStr = (playName, thisAmount, audience) =>
-  `${playName}: ${formatCurrency(thisAmount / 100)} (${audience}석)\n`;
+  `${playName}: ${toUSD(thisAmount / 100)} (${audience}석)\n`;
 const getTotalAmountStr = (totalAmount) =>
-  `총액: ${formatCurrency(totalAmount / 100)}\n`;
+  `총액: ${toUSD(totalAmount / 100)}\n`;
 const getVolumeCreditsStr = (credits) => `적립 포인트: ${credits}점\n`;
 
 const calcAmountFor = (play, perf) => {
