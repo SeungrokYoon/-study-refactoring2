@@ -35,21 +35,25 @@ const calcAmountFor = (play, perf) => {
 };
 
 export default function statement(invoice, plays) {
-  let totalAmount = 0;
-  let volumeCredits = 0;
   let result = getResultTitleStr(invoice.customer);
 
+  //청구 내역을 계산하여 출력
+  let totalAmount = 0;
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
     const thisAmount = calcAmountFor(play, perf);
-    //포인트를 적립한다.
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    //희극 관객 5명마다 추가 포인트를 제공한다.
-    if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-
-    //청구 내역을 출력한다.
     result += getAmountStr(play.name, thisAmount, perf.audience);
     totalAmount += thisAmount;
+  }
+
+  //포인트를 적립하여 출력
+  let volumeCredits = 0;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    //포인트를 적립
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    //희극 관객 5명마다 추가 포인트 제공
+    if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
   }
 
   result += getTotalAmountStr(totalAmount);
