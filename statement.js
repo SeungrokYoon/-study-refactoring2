@@ -8,8 +8,7 @@ const getTotalAmountStr = (totalAmount) =>
   `총액: ${formatCurrency(totalAmount / 100)}\n`;
 const getVolumeCreditsStr = (credits) => `적립 포인트: ${credits}점\n`;
 
-const calcAmountFor = (plays, perf) => {
-  const play = plays[perf.playID];
+const calcAmountFor = (play, perf) => {
   let thisAmount = 0;
 
   switch (play.type) {
@@ -39,7 +38,18 @@ export default function statement(invoice, plays) {
   let result = getResultTitleStr(invoice.customer);
 
   for (let perf of invoice.performances) {
-    totalAmount += calcAmountFor(plays, perf);
+    const play = plays[perf.playID];
+    const thisAmount = calcAmountFor(play, perf);
+    //포인트를 적립한다.
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    //희극 관객 5명마다 추가 포인트를 제공한다.
+    if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
+
+    //청구 내역을 출력한다.
+    result += `${play.name}: ${formatCurrency(thisAmount / 100)} ${
+      perf.audience
+    }석\n`;
+    totalAmount += thisAmount;
   }
 
   result += getTotalAmountStr(totalAmount);
