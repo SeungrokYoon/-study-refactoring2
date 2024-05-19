@@ -4,6 +4,8 @@ const formatCurrency = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 2,
 }).format;
 const getResultTitleStr = (customer) => `청구 내역 (고객명 : ${customer})\n`;
+const getAmountStr = (playName, thisAmount, audience) =>
+  `${playName}: ${formatCurrency(thisAmount / 100)} (${audience}석)\n`;
 const getTotalAmountStr = (totalAmount) =>
   `총액: ${formatCurrency(totalAmount / 100)}\n`;
 const getVolumeCreditsStr = (credits) => `적립 포인트: ${credits}점\n`;
@@ -46,9 +48,7 @@ export default function statement(invoice, plays) {
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
 
     //청구 내역을 출력한다.
-    result += `${play.name}: ${formatCurrency(thisAmount / 100)} ${
-      perf.audience
-    }석\n`;
+    result += getAmountStr(play.name, thisAmount, perf.audience);
     totalAmount += thisAmount;
   }
 
