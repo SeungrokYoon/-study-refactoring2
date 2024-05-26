@@ -24,10 +24,10 @@ export default class User {
     this.salary = salary;
   }
   getHomeAddress() {
-    return `Home address is ${this.homeAddress}`;
+    return formatAddress("home", this.homeAddress);
   }
   getCompanyAddress() {
-    return `Company Address is ${this.companyAddress}`;
+    return formatAddress("company", this.companyAddress);
   }
   printHomeAddress() {
     console.log(this.homeAddress);
