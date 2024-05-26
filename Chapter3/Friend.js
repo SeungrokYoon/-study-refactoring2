@@ -1,4 +1,4 @@
-const USER_ID = 0;
+let USER_ID = 0;
 
 export default class Friend {
   constructor(name, homeAddress, companyAddress, email, country) {

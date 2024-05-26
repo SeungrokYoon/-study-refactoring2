@@ -1,4 +1,6 @@
-const USER_ID = 0;
+import { HomeAddress, CompanyAddress } from "./Address.js";
+
+let USER_ID = 0;
 
 export default class User {
   constructor(
@@ -24,10 +26,11 @@ export default class User {
     this.salary = salary;
   }
   getHomeAddress() {
-    return formatAddress("home", this.homeAddress);
+    // const address = new AbstractAddress(); 에러발생
+    return new HomeAddress(this.homeAddress).formatAddress();
   }
   getCompanyAddress() {
-    return formatAddress("company", this.companyAddress);
+    return new CompanyAddress(this.homeAddress).formatAddress();
   }
   printHomeAddress() {
     console.log(this.homeAddress);
