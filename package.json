@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/SeungrokYoon/study-refactoring2/issues"
   },
-  "homepage": "https://github.com/SeungrokYoon/study-refactoring2#readme"
+  "homepage": "https://github.com/SeungrokYoon/study-refactoring2#readme",
+  "dependencies": {
+    "lodash.curry": "^4.1.1"
+  }
 }
