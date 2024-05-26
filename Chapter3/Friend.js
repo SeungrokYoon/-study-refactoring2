@@ -10,6 +10,12 @@ export default class Friend {
     this.friends = friends;
     this.country = country;
   }
+  getFriendName() {
+    console.log(`I have a friend called ${this.name}`);
+  }
+  getFriendEmail() {
+    console.log(`Friend's email address is ${this.email}`);
+  }
   getHomeAddress() {
     return `Home address is ${this.homeAddress}`;
   }

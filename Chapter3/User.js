@@ -3,24 +3,13 @@ import { HomeAddress, CompanyAddress } from "./Address.js";
 let USER_ID = 0;
 
 export default class User {
-  constructor(
-    name,
-    homeAddress,
-    companyAddress,
-    email,
-    friends,
-    friendsHomeAddress,
-    friendsCompanyAddress,
-    salary
-  ) {
+  constructor({ name, homeAddress, companyAddress, email, friends, salary }) {
     this.id = USER_ID++;
     this.name = name;
     this.homeAddress = homeAddress;
     this.companyAddress = companyAddress;
     this.email = email;
     this.friends = friends;
-    this.friendsHomeAddress = friendsHomeAddress;
-    this.friendsCompanyAddress = friendsCompanyAddress;
     this.menuAteYesterday = { meal: "", drink: "", desert: "" };
     this.salad = "";
     this.salary = salary;
@@ -40,14 +29,14 @@ export default class User {
   }
   printFriendsInfo() {
     for (const f of this.friends) {
-      console.log(`I have a friend called ${f.name}`);
-      console.log(`Friend's email address is ${f.email}`);
+      f.printFriendName();
+      f.printFriendEmail();
     }
   }
   printFriendsAddress() {
     for (const f of this.friends) {
-      console.log(f.address1);
-      console.log(f.address2);
+      f.printHomeAddress();
+      f.printCompanyAddress();
     }
   }
   updateMenu(meal, drink, desert) {
