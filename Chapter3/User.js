@@ -47,13 +47,14 @@ export default class User {
       f.printCompanyAddress();
     }
   }
-  updateMenu(meal, drink, desert) {
-    this.menuAteYesterday.meal = meal;
-    this.menuAteYesterday.drink = drink;
-    this.menuAteYesterday.desert = desert;
+  updateMenu(meal, drink, desert, salad) {
+    this.updateMeal(meal);
+    this.updateDrink(drink);
+    this.updateDesert(desert);
+    this.updateSalad(salad);
   }
   updateMeal(meal) {
-    this.menuAteYesterday.meal = meal;
+    this.menuAteYesterday = { ...this.menuAteYesterday, meal };
   }
   updateDrink(drink) {
     this.menuAteYesterday.drink = drink;
@@ -63,5 +64,9 @@ export default class User {
   }
   updateSalad(salad) {
     this.salad = salad;
+  }
+  getUserYesterdayMenu() {
+    //외부로 노출되는 매서드일때
+    return { ...this.menuAteYesterday };
   }
 }
