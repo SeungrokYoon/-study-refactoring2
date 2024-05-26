@@ -1,10 +1,18 @@
 import { HomeAddress, CompanyAddress } from "./Address.js";
 
-let USER_ID = 0;
+const userIdManager = () => {
+  let USER_ID = 0;
+  function count() {
+    return USER_ID++;
+  }
+  return count;
+};
+
+export const genUserId = userIdManager();
 
 export default class User {
   constructor({ name, homeAddress, companyAddress, email, friends, salary }) {
-    this.id = USER_ID++;
+    this.id = genUserId();
     this.name = name;
     this.homeAddress = homeAddress;
     this.companyAddress = companyAddress;

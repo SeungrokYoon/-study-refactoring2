@@ -1,8 +1,8 @@
-let USER_ID = 0;
+import { genUserId } from "./User.js";
 
 export default class Friend {
   constructor(name, homeAddress, companyAddress, email, country) {
-    this.id = USER_ID++;
+    this.id = genUserId();
     this.name = name;
     this.homeAddress = homeAddress;
     this.companyAddress = companyAddress;
@@ -10,10 +10,10 @@ export default class Friend {
     this.friends = friends;
     this.country = country;
   }
-  getFriendName() {
+  printFriendName() {
     console.log(`I have a friend called ${this.name}`);
   }
-  getFriendEmail() {
+  printFriendEmail() {
     console.log(`Friend's email address is ${this.email}`);
   }
   getHomeAddress() {
