@@ -36,3 +36,25 @@ log(new Date())("DEBUG")("some debug");
 //partial 적용된 함수 - partial
 const logNow = log(new Date());
 logNow("INFO")("message info");
+
+//pipe 함수
+function pipe(...funcArgs) {
+  return (initialArg) =>
+    funcArgs.reduce((acc, currFunc) => currFunc(acc), initialArg);
+}
+
+const getProducts = async () => {
+  const res = await fetch("https://dummyjson.com/products");
+  const json = await res.json();
+  return json;
+};
+
+const products = (await getProducts()).products;
+
+function filterId1(arr) {
+  return arr.filter((obj) => obj.id === 1);
+}
+
+const pipeFilterId = pipe(filterId1, console.log);
+
+pipeFilterId(products);
