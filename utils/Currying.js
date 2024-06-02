@@ -39,9 +39,19 @@ logNow("INFO")("message info");
 
 //pipe 함수
 function pipe(...funcArgs) {
-  return (initialArg) =>
-    funcArgs.reduce((acc, currFunc) => currFunc(acc), initialArg);
+  return (initialArr) =>
+    funcArgs.reduce((acc, currFunc) => currFunc(acc), initialArr);
 }
+
+const sortConsolePipe = pipe(
+  (arr, sortHelper) => arr.sort(sortHelper),
+  (arr) => {
+    console.log(arr);
+    return arr;
+  }
+);
+
+const sortedRes = sortConsolePipe(arrData);
 
 const getProducts = async () => {
   const res = await fetch("https://dummyjson.com/products");
@@ -58,3 +68,19 @@ function filterId1(arr) {
 const pipeFilterId = pipe(filterId1, console.log);
 
 pipeFilterId(products);
+
+//go 함수
+function go(initial, ...funcs) {
+  return funcs.reduce((result, func) => {
+    return func(result);
+  }, initial);
+}
+
+const res = go(
+  arrData,
+  (arr, sortHelper) => arr.sort(sortHelper),
+  (arr) => {
+    console.log(arr);
+    return arr;
+  }
+);
