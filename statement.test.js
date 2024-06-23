@@ -1,5 +1,5 @@
-import playData from "./play.json" assert { type: "json" };
-import invoiceDataArr from "./invoices.json" assert { type: "json" };
+import playData from "./play.json";
+import invoiceDataArr from "./invoices.json";
 import statement from "./statement.js";
 
 const testStatementResult = `청구 내역 (고객명 : BigCo)
@@ -15,4 +15,6 @@ function testStatement() {
   return res === testStatementResult;
 }
 
-console.log(testStatement());
+test("test statement to be true", () => {
+  expect(testStatement()).toBe(true);
+});
