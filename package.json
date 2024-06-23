@@ -22,5 +22,8 @@
   "homepage": "https://github.com/SeungrokYoon/study-refactoring2#readme",
   "dependencies": {
     "lodash.curry": "^4.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
